@@ -38,11 +38,51 @@ def selection_sort(values:list[int]) -> None:
 
 # Part 1
 
+def selection_sort_books(lista:list)->list:
+    alphabet = "abcdefghgklmnopqrstuvwxyz"
+    for i in range(len(lista)-1):
+        swap = i
+        for j in range(i+1, len(lista)):
+            if lista[swap].title.lower() > lista[j].title.lower():
+                swap = j
+        temp = lista[swap]
+        lista[swap] = lista[i]
+        lista[i] = temp
+    return lista
+books = [data.Book("percy","olympian"), data.Book("durk", "apples"),data.Book("Amy", "dirty")]
+print(selection_sort_books(books))
 
 # Part 2
+def swap_case(words:str)->str:
+    word = list(words)
+    for i in range(len(word)):
+        if word[i].isupper() and word[i].isalpha():
+            word[i] = word[i].lower()
+        elif word[i].islower() and word[i].isalpha():
+            word[i] = word[i].upper()
+    return "".join(word)
+word = "HELLO world"
+print(swap_case(word))
+
+
 
 
 # Part 3
+def str_translate(word :str,old :str,new :str)->str:
+    word = list(word)
+    for i in range(len(word)):
+        if word[i] == old:
+            word[i] = new
+    return "".join(word)
 
 
 # Part 4
+def histogram(word:str)->dict:
+    word = word.lower().split()
+    dictionary = {}
+    for i in word:
+        if i in dictionary:
+            dictionary[i] += 1
+        else:
+            dictionary[i] = 1
+    return dictionary
